@@ -44,7 +44,7 @@ public class ScalePlayer extends Application {
     private void createWindow(Stage primaryStage){
         Button playScaleBtn = new Button();
         playScaleBtn.setText("Play Scale");
-        playScaleBtn.setStyle("-fx-background-color: #16a80a; ");
+        playScaleBtn.setStyle("-fx-background-color: #70e563; ");
         playScaleBtn.setOnAction(new EventHandler<ActionEvent>(){
            
             @Override
@@ -55,7 +55,7 @@ public class ScalePlayer extends Application {
          
         Button stopPlayingBtn = new Button();
         stopPlayingBtn.setText("Stop Playing");
-        stopPlayingBtn.setStyle("-fx-background-color: #dc1205; ");
+        stopPlayingBtn.setStyle("-fx-background-color: #eb4c41; ");
         stopPlayingBtn.setOnAction(new EventHandler<ActionEvent>(){
            
             @Override
