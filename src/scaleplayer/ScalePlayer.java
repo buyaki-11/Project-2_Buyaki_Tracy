@@ -49,12 +49,10 @@ public class ScalePlayer extends Application {
            
             @Override
             public void handle(ActionEvent event) {
-                inputTextDialog();
-               
+                inputTextDialog(); 
             }
         });
          
-       
         Button stopPlayingBtn = new Button();
         stopPlayingBtn.setText("Stop Playing");
         stopPlayingBtn.setStyle("-fx-background-color: #dc1205; ");
@@ -74,7 +72,6 @@ public class ScalePlayer extends Application {
             primaryStage.close();
         });
        
-       
         menu.getItems().add(menuItem1);
         MenuBar mb = new MenuBar();
         mb.getMenus().add(menu);
@@ -82,7 +79,6 @@ public class ScalePlayer extends Application {
         VBox vb = new VBox(mb);
         HBox hb = new HBox();
         HBox root = new HBox();
-       
        
         hb.getChildren().add(playScaleBtn);
         hb.getChildren().add(stopPlayingBtn);
@@ -97,7 +93,6 @@ public class ScalePlayer extends Application {
         menuStack.getChildren().add(border);
         root.getChildren().add(menuStack);
         HBox.setHgrow(menuStack, Priority.ALWAYS);
-       
        
         Scene scene = new Scene(root, 300, 250);
        
@@ -148,34 +143,30 @@ public class ScalePlayer extends Application {
         dialog.setHeaderText("Give me a starting note (0-115):");
        
         Optional<String> result = dialog.showAndWait();
-        //Optional<ButtonType> buttonResult = alert.showAndWait();
         if (result.isPresent()){
            
             String note;
             note = result.get();
             int noteValue = Integer.parseInt(note);
-            playComposition(noteValue);
-           
-           
+            playComposition(noteValue); 
         }
         /*
         if((buttonResult.isPresent()) && (buttonResult.get() == ButtonType.OK)){
             composition.stop();
         }
         */
-       
-       
     }
-   
+   /**
+    * Declares a new Midi composition object and calls createWindow.
+    * @param primaryStage 
+    * @return nothing
+    */
     @Override
     public void start(Stage primaryStage) {
         composition = new MidiPlayer(1,60);
-        createWindow(primaryStage);
-       
-       
+        createWindow(primaryStage);    
     }
-   
-
+  
     /**
      * @param args the command line arguments
      */
