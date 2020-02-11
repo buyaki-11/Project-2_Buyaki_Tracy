@@ -100,7 +100,7 @@ public class ScalePlayer extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         
-         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
             @Override
             public void handle(WindowEvent t){
                 Platform.exit();
