@@ -33,7 +33,7 @@ import javafx.stage.WindowEvent;
  */
 public class ScalePlayer extends Application {
    
-    private MidiPlayer composition;
+    private MidiPlayer composition; //current composition declaration
     
      /**
      * Creates a window with a "File" menu, an "Exit" menu item and the "play"
