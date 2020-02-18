@@ -113,6 +113,7 @@ public class ScalePlayer extends Application {
 //        });
 //   
 //    }
+    
     @FXML
     private MenuItem menuItem1;
     @FXML
@@ -120,15 +121,15 @@ public class ScalePlayer extends Application {
     @FXML
     private Button stopPlayingBtn;
    
-    
     /**
      * Plays Do Re Mi Fa Sol La Ti Do notes starting at a note given by the
      * user, going up in pitch and back down from the highest note.
      * @param startNote
-     * @return nothing
+     * @return none
      */
-    private void playComposition(int startNote){
+    public void playComposition(int startNote){
         composition.clear();
+        
         int[] step;
         step = new int[]{0,2,2,1,2,2,2,1};
         int currentNote = startNote;
@@ -138,16 +139,14 @@ public class ScalePlayer extends Application {
             composition.addNote(currentNote, 127, 17-i, 1, 0, 7); //scale going down
         }
         composition.play();
-
-       
     }
+    
     /**
      * Creates a Text Input Dialog that asks the user for a starting note.
      * @param unused
-     * @return nothing
      */
 
-    private void inputTextDialog(){
+    public void inputTextDialog(){
         TextInputDialog dialog = new TextInputDialog();
        
         dialog.setTitle("Starting note");
@@ -169,22 +168,36 @@ public class ScalePlayer extends Application {
     }
    /**
     * Declares a new Midi composition object and calls createWindow.
-    * @param primaryStage 
-    * @return nothing
+    * @param primaryStage
+     * @throws java.io.IOException
     */
+    
+    public void initialize(){
+        composition = new MidiPlayer(1,60);
+    }
+    
     @Override
     public void start(Stage primaryStage) throws IOException {
-        composition = new MidiPlayer(1,60);
+        initialize();
         Parent root = FXMLLoader.load(getClass().getResource("ScalePlayer.fxml"));
         primaryStage.setTitle("ScalePlayer");
         primaryStage.setScene(new Scene(root,300,250));
         primaryStage.show();
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
+            @Override
+            public void handle(WindowEvent t){
+                Platform.exit();
+                System.exit(0);
+            }
+        });
+        
     }
   
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         launch(args);
     }
 
