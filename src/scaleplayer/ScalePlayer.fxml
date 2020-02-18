@@ -7,13 +7,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<BorderPane id="root" prefHeight="250.0" prefWidth="300.0" styleClass="mainFxmlClass" stylesheets="@../../../Project2/src/scaleplayer/ScalePlayer.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scaleplayer.ScalePlayer">
+<BorderPane id="root" styleClass="root" stylesheets="@ScalePlayer.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scaleplayer.ScalePlayer">
    <center>
-      <HBox id="hb" alignment="CENTER" minWidth="-Infinity" spacing="15.0" styleClass="mainFxmlClass" stylesheets="@../../../Project2/src/scaleplayer/ScalePlayer.css" BorderPane.alignment="CENTER">
+      <HBox id="hb" alignment="CENTER" minWidth="-Infinity" BorderPane.alignment="CENTER">
          <children>
-            <Button id="playScaleBtn" fx:id="playScaleBtn" mnemonicParsing="false" onAction="#HandlePlayBotton" styleClass="mainFxmlClass" stylesheets="@../../../Project2/src/scaleplayer/ScalePlayer.css" text="PlayScale" />
-            <Button id="stopPlayingBtn" fx:id="stopPlayingBtn" mnemonicParsing="false" onAction="#HandleStopBotton" styleClass="mainFxmlClass" stylesheets="@../../../Project2/src/scaleplayer/ScalePlayer.css" text="Stop Playing" />
+            <Button id="playScaleBtn" fx:id="playScaleBtn" mnemonicParsing="false" onAction="#HandlePlayBotton" text="PlayScale" />
+            <Button id="stopPlayingBtn" fx:id="stopPlayingBtn" mnemonicParsing="false" onAction="#HandleStopBotton" text="Stop Playing" />
          </children>
       </HBox>
    </center>

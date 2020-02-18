@@ -2,6 +2,23 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
+#root{
+    -fx-pref-width: 350;
+    -fx-pref-height: 200;
+}
+
+#playScaleBtn {
+    -fx-background-color: greenyellow;
 
 }
+
+#stopPlayingBtn {
+    -fx-background-color: pink;
+}
+
+#hb {
+    -fx-spacing: 15;
+    -fx-pref-width: 350;
+    -fx-pref-height: 200;
+}
+
