@@ -6,7 +6,7 @@
 Set format for BorderPane
 */
 #root{
-    -fx-pref-width: 350;
+    -fx-pref-width: 400;
     -fx-pref-height: 200;
 }
 
@@ -30,7 +30,7 @@ Set format for HBox(spacing between the bottons)
 */
 #hb {
     -fx-spacing: 15;
-    -fx-pref-width: 350;
+    -fx-pref-width: 400;
     -fx-pref-height: 200;
 }
 
