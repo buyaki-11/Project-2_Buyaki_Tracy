@@ -33,86 +33,12 @@ import javafx.stage.WindowEvent;
  * @author Janet Davis 
  * @author Buyaki Nyatichi
  * @author Zoe Hill
+ * @author Tracy Cui
  * @since February 10, 2020
  */
 public class ScalePlayer extends Application {
    
     private MidiPlayer composition; //current composition declaration
-    
-//     /**
-//     * Creates a window with a "File" menu, an "Exit" menu item and the "play"
-//     * and "stop buttons.
-//     * @param primaryStage
-//     * @return nothing
-//     */
-//    private void createWindow(Stage primaryStage){
-//        Button playScaleBtn = new Button();
-//        playScaleBtn.setText("Play Scale");
-//        playScaleBtn.setStyle("-fx-background-color: #70e563; ");
-//        playScaleBtn.setOnAction(new EventHandler<ActionEvent>(){
-//           
-//            @Override
-//            public void handle(ActionEvent event) {
-//                inputTextDialog(); 
-//            }
-//        });
-//         
-//        Button stopPlayingBtn = new Button();
-//        stopPlayingBtn.setText("Stop Playing");
-//        stopPlayingBtn.setStyle("-fx-background-color: #eb4c41; ");
-//        stopPlayingBtn.setOnAction(new EventHandler<ActionEvent>(){
-//           
-//            @Override
-//            public void handle(ActionEvent event) {
-//                composition.stop();
-//                composition.clear();
-//               
-//            }
-//        });
-//       
-//        Menu menu = new Menu("File");
-//        MenuItem menuItem1 = new MenuItem("Exit");
-//        menuItem1.setOnAction(e -> {
-//            primaryStage.close();
-//        });
-//       
-//        menu.getItems().add(menuItem1);
-//        MenuBar mb = new MenuBar();
-//        mb.getMenus().add(menu);
-//       
-//        VBox vb = new VBox(mb);
-//        HBox hb = new HBox();
-//        HBox root = new HBox();
-//       
-//        hb.getChildren().add(playScaleBtn);
-//        hb.getChildren().add(stopPlayingBtn);
-//        hb.setSpacing(15);
-//        hb.setAlignment(Pos.CENTER);
-//       
-//        BorderPane border = new BorderPane();
-//        border.setTop(vb);
-//        border.setCenter(hb);
-//       
-//        StackPane menuStack = new StackPane();
-//        menuStack.getChildren().add(border);
-//        root.getChildren().add(menuStack);
-//        HBox.setHgrow(menuStack, Priority.ALWAYS);
-//       
-//        Scene scene = new Scene(root, 300, 250);
-//       
-//        primaryStage.setTitle("Scale Player");
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-//        
-//        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
-//            @Override
-//            public void handle(WindowEvent t){
-//                Platform.exit();
-//                System.exit(0);
-//            }
-//        });
-//   
-//    }
     
     @FXML
     private MenuItem menuItem1;
@@ -144,6 +70,7 @@ public class ScalePlayer extends Application {
     /**
      * Creates a Text Input Dialog that asks the user for a starting note.
      * @param unused
+     * @return none
      */
 
     public void inputTextDialog(){
@@ -160,22 +87,21 @@ public class ScalePlayer extends Application {
             int noteValue = Integer.parseInt(note);
             playComposition(noteValue); 
         }
-        /*
-        if((buttonResult.isPresent()) && (buttonResult.get() == ButtonType.OK)){
-            composition.stop();
-        }
-        */
+
     }
-   /**
-    * Declares a new Midi composition object and calls createWindow.
-    * @param primaryStage
-     * @throws java.io.IOException
-    */
-    
+
+    /**
+     * create a new  Midi composition object
+     */
     public void initialize(){
         composition = new MidiPlayer(1,60);
     }
     
+    /**
+    * Call initialize to launch a new Midi composition object and calls createWindow.
+    * @param primaryStage
+     * @throws java.io.IOException
+    */
     @Override
     public void start(Stage primaryStage) throws IOException {
         initialize();
@@ -193,11 +119,10 @@ public class ScalePlayer extends Application {
         
     }
   
-    /**
+    /** launch the application
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
         launch(args);
     }
 
