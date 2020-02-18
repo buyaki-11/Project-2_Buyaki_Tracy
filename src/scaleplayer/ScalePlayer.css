@@ -2,20 +2,32 @@
  * Empty Stylesheet file.
  */
 
+/*
+Set format for BorderPane
+*/
 #root{
     -fx-pref-width: 350;
     -fx-pref-height: 200;
 }
 
+/*
+Set format for Play Botton
+*/
 #playScaleBtn {
     -fx-background-color: greenyellow;
 
 }
 
+/*
+Set format for Stop Botton
+*/
 #stopPlayingBtn {
     -fx-background-color: pink;
 }
 
+/*
+Set format for HBox(spacing between the bottons)
+*/
 #hb {
     -fx-spacing: 15;
     -fx-pref-width: 350;
