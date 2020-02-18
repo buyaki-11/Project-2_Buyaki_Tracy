@@ -3,13 +3,17 @@
  */
 package scaleplayer;
 
+import java.io.IOException;
 import java.util.Optional;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
@@ -35,81 +39,88 @@ public class ScalePlayer extends Application {
    
     private MidiPlayer composition; //current composition declaration
     
-     /**
-     * Creates a window with a "File" menu, an "Exit" menu item and the "play"
-     * and "stop buttons.
-     * @param primaryStage
-     * @return nothing
-     */
-    private void createWindow(Stage primaryStage){
-        Button playScaleBtn = new Button();
-        playScaleBtn.setText("Play Scale");
-        playScaleBtn.setStyle("-fx-background-color: #70e563; ");
-        playScaleBtn.setOnAction(new EventHandler<ActionEvent>(){
-           
-            @Override
-            public void handle(ActionEvent event) {
-                inputTextDialog(); 
-            }
-        });
-         
-        Button stopPlayingBtn = new Button();
-        stopPlayingBtn.setText("Stop Playing");
-        stopPlayingBtn.setStyle("-fx-background-color: #eb4c41; ");
-        stopPlayingBtn.setOnAction(new EventHandler<ActionEvent>(){
-           
-            @Override
-            public void handle(ActionEvent event) {
-                composition.stop();
-                composition.clear();
-               
-            }
-        });
-       
-        Menu menu = new Menu("File");
-        MenuItem menuItem1 = new MenuItem("Exit");
-        menuItem1.setOnAction(e -> {
-            primaryStage.close();
-        });
-       
-        menu.getItems().add(menuItem1);
-        MenuBar mb = new MenuBar();
-        mb.getMenus().add(menu);
-       
-        VBox vb = new VBox(mb);
-        HBox hb = new HBox();
-        HBox root = new HBox();
-       
-        hb.getChildren().add(playScaleBtn);
-        hb.getChildren().add(stopPlayingBtn);
-        hb.setSpacing(15);
-        hb.setAlignment(Pos.CENTER);
-       
-        BorderPane border = new BorderPane();
-        border.setTop(vb);
-        border.setCenter(hb);
-       
-        StackPane menuStack = new StackPane();
-        menuStack.getChildren().add(border);
-        root.getChildren().add(menuStack);
-        HBox.setHgrow(menuStack, Priority.ALWAYS);
-       
-        Scene scene = new Scene(root, 300, 250);
-       
-        primaryStage.setTitle("Scale Player");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
-            @Override
-            public void handle(WindowEvent t){
-                Platform.exit();
-                System.exit(0);
-            }
-        });
+//     /**
+//     * Creates a window with a "File" menu, an "Exit" menu item and the "play"
+//     * and "stop buttons.
+//     * @param primaryStage
+//     * @return nothing
+//     */
+//    private void createWindow(Stage primaryStage){
+//        Button playScaleBtn = new Button();
+//        playScaleBtn.setText("Play Scale");
+//        playScaleBtn.setStyle("-fx-background-color: #70e563; ");
+//        playScaleBtn.setOnAction(new EventHandler<ActionEvent>(){
+//           
+//            @Override
+//            public void handle(ActionEvent event) {
+//                inputTextDialog(); 
+//            }
+//        });
+//         
+//        Button stopPlayingBtn = new Button();
+//        stopPlayingBtn.setText("Stop Playing");
+//        stopPlayingBtn.setStyle("-fx-background-color: #eb4c41; ");
+//        stopPlayingBtn.setOnAction(new EventHandler<ActionEvent>(){
+//           
+//            @Override
+//            public void handle(ActionEvent event) {
+//                composition.stop();
+//                composition.clear();
+//               
+//            }
+//        });
+//       
+//        Menu menu = new Menu("File");
+//        MenuItem menuItem1 = new MenuItem("Exit");
+//        menuItem1.setOnAction(e -> {
+//            primaryStage.close();
+//        });
+//       
+//        menu.getItems().add(menuItem1);
+//        MenuBar mb = new MenuBar();
+//        mb.getMenus().add(menu);
+//       
+//        VBox vb = new VBox(mb);
+//        HBox hb = new HBox();
+//        HBox root = new HBox();
+//       
+//        hb.getChildren().add(playScaleBtn);
+//        hb.getChildren().add(stopPlayingBtn);
+//        hb.setSpacing(15);
+//        hb.setAlignment(Pos.CENTER);
+//       
+//        BorderPane border = new BorderPane();
+//        border.setTop(vb);
+//        border.setCenter(hb);
+//       
+//        StackPane menuStack = new StackPane();
+//        menuStack.getChildren().add(border);
+//        root.getChildren().add(menuStack);
+//        HBox.setHgrow(menuStack, Priority.ALWAYS);
+//       
+//        Scene scene = new Scene(root, 300, 250);
+//       
+//        primaryStage.setTitle("Scale Player");
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//        
+//        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
+//            @Override
+//            public void handle(WindowEvent t){
+//                Platform.exit();
+//                System.exit(0);
+//            }
+//        });
+//   
+//    }
+    @FXML
+    private MenuItem menuItem1;
+    @FXML
+    private Button playScaleBtn;
+    @FXML
+    private Button stopPlayingBtn;
    
-    }
-   
+    
     /**
      * Plays Do Re Mi Fa Sol La Ti Do notes starting at a note given by the
      * user, going up in pitch and back down from the highest note.
@@ -162,9 +173,12 @@ public class ScalePlayer extends Application {
     * @return nothing
     */
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         composition = new MidiPlayer(1,60);
-        createWindow(primaryStage);    
+        Parent root = FXMLLoader.load(getClass().getResource("ScalePlayer.fxml"));
+        primaryStage.setTitle("ScalePlayer");
+        primaryStage.setScene(new Scene(root,300,250));
+        primaryStage.show();
     }
   
     /**
@@ -172,6 +186,23 @@ public class ScalePlayer extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+    @FXML
+    private void HandleExit(ActionEvent event) {
+        Platform.exit();
+        System.exit(0);
+    }
+
+    @FXML
+    private void HandlePlayBotton(ActionEvent event) {
+        inputTextDialog(); 
+    }
+
+    @FXML
+    private void HandleStopBotton(ActionEvent event) {
+        composition.stop();
+        composition.clear(); 
     }
    
 }
